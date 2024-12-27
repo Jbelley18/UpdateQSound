@@ -15,11 +15,18 @@ core.commands = {
     ["vars"] = function()
         print(core.utils.dump(qsVariableArray));
     end,
+    ["checkbf"] = function()
+        for i = 1, GetMaxBattlefieldID() do
+            local _, _, _, _, _, type = GetBattlefieldStatus(i);  -- Note: Fixed the syntax here
+            print("Battlefield", i, "Type:", type);
+        end
+    end,
     ["help"] = function()
         print(" ")
         print("Queue Sound Help")
         print("|cff00cc66/qs config|r - shows config menu");
         print("|cff00cc66/qs help|r - shows help info");
+        print("|cff00cc66/qs checkbf|r - shows battlefield types");  -- Added help text
         print(" ")
     end
 }
@@ -73,6 +80,7 @@ local function VarChecker()
         qsVariableArray["qsSKRMState"] = true;
         qsVariableArray["qsLFDState"] = true;
         qsVariableArray["qsLFRState"] = true;
+        qsVariableArray["qsBlitzState"] = true;  -- Add this line
     end
     --if theres no music states, add the music states
     -- if qsVariableArray["qsArenaSong"] == nil then
@@ -82,6 +90,7 @@ local function VarChecker()
     qsVariableArray["qsSKRMSong"] = songPath .. "RamonesLetsGo" .. ".mp3";
     qsVariableArray["qsLFDSong"] = songPath .. "RamonesLetsGo" .. ".mp3";
     qsVariableArray["qsLFRSong"] = songPath .. "RamonesLetsGo" .. ".mp3";
+    qsVariableArray["qsBlitzSong"] = songPath .. "RamonesLetsGo" .. ".mp3";  -- Add this line
     -- end
 end
 

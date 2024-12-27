@@ -19,6 +19,9 @@ function Config:VarStates(bgType)
     if bgType == "arena" then
         qsVariableArray["qsArenaState"] = not qsVariableArray["qsArenaState"]
     end
+    if bgType == "blitz" then
+        qsVariableArray["qsBlitzState"] = not qsVariableArray["qsBlitzState"]
+    end
     if bgType == "skrm" then
         qsVariableArray["qsShuffleState"] = not qsVariableArray["qsShuffleState"]
     end
@@ -36,12 +39,14 @@ function Config:VarStates(bgType)
     end
 
     return qsVariableArray["qsArenaState"], qsVariableArray["qsShuffleState"], qsVariableArray["qsBGState"],
-        qsVariableArray["qsSKRMState"], qsVariableArray["qsLFDState"], qsVariableArray["qsLFRState"]
+    qsVariableArray["qsSKRMState"], qsVariableArray["qsLFDState"], qsVariableArray["qsLFRState"], 
+    qsVariableArray["qsBlitzState"]
 end
 
 function Config:MuscStates()
     return qsVariableArray["qsArenaSong"], qsVariableArray["qsShuffleSong"], qsVariableArray["qsBGSong"],
-        qsVariableArray["qsSKRMSong"], qsVariableArray["qsLFDSong"], qsVariableArray["qsLFRSong"];
+        qsVariableArray["qsSKRMSong"], qsVariableArray["qsLFDSong"], qsVariableArray["qsLFRSong"],
+        qsVariableArray["qsBlitzSong"];
 end
 
 function Config:CreateToggle(point, relativeFrame, relativePoint, text, toggleVar, bgType)
@@ -56,7 +61,7 @@ end
 function Config:CreateMenu()
     -- creating the main frame + its location
     arenaSoundconfig = CreateFrame("Frame", "arenaSoundUIFrame", UIParent, "BasicFrameTemplateWithInset")
-    arenaSoundconfig:SetSize(200, 230)
+    arenaSoundconfig:SetSize(200, 260)
     arenaSoundconfig:SetPoint("CENTER", UIParent, "CENTER", 0, 120)
 
     -- title
@@ -88,6 +93,9 @@ function Config:CreateMenu()
     --lfrToggle
     arenaSoundconfig.lfrToggle = self:CreateToggle("TOPLEFT", arenaSoundconfig.lfdToggle, "BOTTOMLEFT", "LFR Queue Sound",
         qsVariableArray["qsLFRState"], "lfr");
+    --blitzToggle
+    arenaSoundconfig.blitzToggle = self:CreateToggle("TOPLEFT", arenaSoundconfig.lfrToggle, "BOTTOMLEFT", 
+    "Blitz Queue Sound", qsVariableArray["qsBlitzState"], "blitz");
 
     arenaSoundconfig:Hide()
     return arenaSoundconfig

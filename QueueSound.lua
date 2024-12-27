@@ -82,6 +82,10 @@ local function arenaEventHandler(self, event, ...)
                 arenaPlayMusic(true, skrmSong)
                 battlefieldIDs[i] = true;
             end
+            if battlefieldType == "BRAWLBG" and blitzToggleState == true then
+                arenaPlayMusic(true, blitzSong)
+                battlefieldIDs[i] = true;
+            end
         end
         --need to have some kind of "only stop if its the same i that started the music"
         if queueStatus ~= "confirm" and battlefieldIDs[i] == true then
